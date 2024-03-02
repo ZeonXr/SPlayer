@@ -4,7 +4,7 @@ import { checkPlatform } from "@/utils/helper";
 import App from "@/App.vue";
 import router from "@/router";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
-import packageJson from "@/../package.json";
+// import packageJson from "@/../package.json";
 
 // 全局样式
 import "@/style/main.scss";
@@ -48,18 +48,18 @@ window.$cleanAll = (tip = true) => {
 };
 
 // 版权声明
-const logoText = import.meta.env.RENDERER_VITE_SITE_TITLE;
-const copyrightNotice = `\n\n版本: ${packageJson.version}\n作者: ${packageJson.author}\n作者主页: ${packageJson.home}\nGitHub: ${packageJson.github}`;
-console.info(
-  `%c${logoText} %c ${copyrightNotice}`,
-  "color:#f55e55;font-size:26px;font-weight:bold;",
-  "font-size:16px",
-);
-console.info(
-  "若站点出现异常，可尝试在下方输入 %c$cleanAll()%c 然后按回车来重置",
-  "background: #eaeffd;color:#f55e55;padding: 4px 6px;border-radius:8px;",
-  "background:unset;color:unset;",
-);
+// const logoText = import.meta.env.RENDERER_VITE_SITE_TITLE;
+// const copyrightNotice = `\n\n版本: ${packageJson.version}\n作者: ${packageJson.author}\n作者主页: ${packageJson.home}\nGitHub: ${packageJson.github}`;
+// console.info(
+//   `%c${logoText} %c ${copyrightNotice}`,
+//   "color:#f55e55;font-size:26px;font-weight:bold;",
+//   "font-size:16px",
+// );
+// console.info(
+//   "若站点出现异常，可尝试在下方输入 %c$cleanAll()%c 然后按回车来重置",
+//   "background: #eaeffd;color:#f55e55;padding: 4px 6px;border-radius:8px;",
+//   "background:unset;color:unset;",
+// );
 
 // 挂载
 const app = createApp(App);

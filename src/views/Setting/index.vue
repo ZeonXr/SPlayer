@@ -3,7 +3,7 @@
   <div :class="{ setting: true, 'use-cover': themeAutoCover }">
     <n-h1 class="title">
       <n-text>全局设置</n-text>
-      <div class="copyright" @click="jump">
+      <!-- <div class="copyright" @click="jump">
         <div class="author">
           <n-icon depth="3" size="18">
             <SvgIcon icon="github" />
@@ -11,10 +11,10 @@
           <n-text class="author-text" depth="3">{{ packageJson.author }}</n-text>
         </div>
         <n-text class="version" depth="3">{{ packageJson.version }}</n-text>
-      </div>
+      </div> -->
     </n-h1>
     <!-- 导航栏 -->
-    <n-tabs
+    <!-- <n-tabs
       ref="setTabsRef"
       v-model:value="setTabsValue"
       type="segment"
@@ -26,7 +26,7 @@
       <n-tab name="setTab4"> 歌词 </n-tab>
       <n-tab name="setTab5"> 下载 </n-tab>
       <n-tab name="setTab6"> 其他 </n-tab>
-    </n-tabs>
+    </n-tabs> -->
     <!-- 设置项 -->
     <n-scrollbar
       ref="setScrollRef"
@@ -57,7 +57,7 @@
             @update:value="themeAuto = false"
           />
         </n-card>
-        <n-card class="set-item">
+        <!-- <n-card class="set-item">
           <div class="name">明暗模式是否跟随系统</div>
           <n-switch
             v-model:value="themeAuto"
@@ -158,7 +158,7 @@
             ]"
             class="set"
           />
-        </n-card>
+        </n-card> -->
       </div>
       <!-- 系统 -->
       <div v-if="checkPlatform.electron()" class="set-type">
@@ -201,7 +201,7 @@
         </n-card>
       </div>
       <!-- 播放 -->
-      <div class="set-type">
+      <!-- <div class="set-type">
         <n-h3 prefix="bar"> 播放 </n-h3>
         <n-card class="set-item">
           <div class="name">
@@ -354,9 +354,9 @@
           </div>
           <n-switch v-model:value="showSpectrums" :round="false" />
         </n-card>
-      </div>
+      </div> -->
       <!-- 歌词 -->
-      <div class="set-type">
+      <!-- <div class="set-type">
         <n-h3 prefix="bar"> 歌词 </n-h3>
         <n-card
           class="set-item"
@@ -490,9 +490,9 @@
           </div>
           <n-switch v-model:value="lyricsBlur" :round="false" />
         </n-card>
-      </div>
+      </div> -->
       <!-- 下载 -->
-      <div class="set-type">
+      <!-- <div class="set-type">
         <n-h3 prefix="bar"> 下载 </n-h3>
         <n-card class="set-item">
           <div class="name">
@@ -531,11 +531,11 @@
           <div class="name">下载歌曲时同时下载歌词</div>
           <n-switch v-model:value="downloadLyrics" :disabled="!downloadMeta" :round="false" />
         </n-card>
-      </div>
+      </div> -->
       <!-- 其他 -->
       <div class="set-type">
         <n-h3 prefix="bar"> 其他 </n-h3>
-        <n-card class="set-item">
+        <!-- <n-card class="set-item">
           <div class="name">显示 GitHub 仓库按钮</div>
           <n-switch v-model:value="showGithub" :round="false" />
         </n-card>
@@ -563,7 +563,7 @@
             class="set"
             @update:value="themeAuto = false"
           />
-        </n-card>
+        </n-card> -->
         <n-card class="set-item">
           <div class="name">
             程序重置
@@ -578,121 +578,122 @@
 
 <script setup>
 import { storeToRefs } from "pinia";
-import { useOsTheme } from "naive-ui";
+// import { useOsTheme } from "naive-ui";
 import { siteSettings, siteStatus, musicData } from "@/stores";
 import { checkPlatform } from "@/utils/helper";
 import debounce from "@/utils/debounce";
-import packageJson from "@/../package.json";
+// import packageJson from "@/../package.json";
 
 const music = musicData();
 const status = siteStatus();
 const settings = siteSettings();
-const { showPlayBar, coverTheme } = storeToRefs(status);
+// const { showPlayBar, coverTheme } = storeToRefs(status);
+const { showPlayBar } = storeToRefs(status);
 const {
   themeType,
-  themeTypeName,
+  // themeTypeName,
   themeAuto,
   themeAutoCover,
-  themeAutoCoverType,
-  showSider,
+  // themeAutoCoverType,
+  // showSider,
   closeTip,
   closeType,
-  loadSize,
-  songVolumeFade,
-  autoPlay,
-  showYrc,
-  showYrcAnimation,
-  countDownShow,
-  playerBackgroundType,
-  useUnmServer,
-  showTransl,
-  showRoma,
-  songLevel,
+  // loadSize,
+  // songVolumeFade,
+  // autoPlay,
+  // showYrc,
+  // showYrcAnimation,
+  // countDownShow,
+  // playerBackgroundType,
+  // useUnmServer,
+  // showTransl,
+  // showRoma,
+  // songLevel,
   showTaskbarProgress,
-  lyricsPosition,
-  lyricsBlock,
-  lrcMousePause,
-  lyricsFontSize,
-  lyricsBlur,
-  showSearchHistory,
-  autoSignIn,
-  bottomLyricShow,
-  downloadPath,
-  memorySeek,
-  showGithub,
-  playCoverType,
-  playSearch,
-  showPlaylistCount,
-  showSpectrums,
-  siderShowCover,
-  useMusicCache,
-  downloadMeta,
-  downloadCover,
-  downloadLyrics,
+  // lyricsPosition,
+  // lyricsBlock,
+  // lrcMousePause,
+  // lyricsFontSize,
+  // lyricsBlur,
+  // showSearchHistory,
+  // autoSignIn,
+  // bottomLyricShow,
+  // downloadPath,
+  // memorySeek,
+  // showGithub,
+  // playCoverType,
+  // playSearch,
+  // showPlaylistCount,
+  // showSpectrums,
+  // siderShowCover,
+  // useMusicCache,
+  // downloadMeta,
+  // downloadCover,
+  // downloadLyrics,
 } = storeToRefs(settings);
 
 // 标签页数据
-const setTabsRef = ref(null);
+// const setTabsRef = ref(null);
 const setScrollRef = ref(null);
 const setTabsValue = ref("setTab1");
 
 // 基础数据
-const osThemeRef = useOsTheme();
+// const osThemeRef = useOsTheme();
 
 // 音质数据
-const songLevelData = {
-  standard: {
-    label: "标准音质",
-    tip: "标准音质 128kbps",
-    value: "standard",
-  },
-  higher: {
-    label: "较高音质",
-    tip: "较高音质 328kbps",
-    value: "higher",
-  },
-  exhigh: {
-    label: "极高 HQ",
-    tip: "近 CD 品质的细节体验，最高 320kbps",
-    value: "exhigh",
-  },
-  lossless: {
-    label: "无损 SQ",
-    tip: "高保真无损音质，最高 48kHz/16bit",
-    value: "lossless",
-  },
-  hires: {
-    label: "高清臻音 Spatial Audio",
-    tip: "环绕声体验，声音听感增强，96kHz/24bit",
-    value: "hires",
-  },
-  jymaster: {
-    label: "超清母带 Master",
-    tip: "还原音频细节，192kHz/24bit",
-    value: "jymaster",
-  },
-  sky: {
-    label: "沉浸环绕声 Surround Audio",
-    tip: "沉浸式体验，最高 5.1 声道",
-    value: "sky",
-  },
-};
+// const songLevelData = {
+//   standard: {
+//     label: "标准音质",
+//     tip: "标准音质 128kbps",
+//     value: "standard",
+//   },
+//   higher: {
+//     label: "较高音质",
+//     tip: "较高音质 328kbps",
+//     value: "higher",
+//   },
+//   exhigh: {
+//     label: "极高 HQ",
+//     tip: "近 CD 品质的细节体验，最高 320kbps",
+//     value: "exhigh",
+//   },
+//   lossless: {
+//     label: "无损 SQ",
+//     tip: "高保真无损音质，最高 48kHz/16bit",
+//     value: "lossless",
+//   },
+//   hires: {
+//     label: "高清臻音 Spatial Audio",
+//     tip: "环绕声体验，声音听感增强，96kHz/24bit",
+//     value: "hires",
+//   },
+//   jymaster: {
+//     label: "超清母带 Master",
+//     tip: "还原音频细节，192kHz/24bit",
+//     value: "jymaster",
+//   },
+//   sky: {
+//     label: "沉浸环绕声 Surround Audio",
+//     tip: "沉浸式体验，最高 5.1 声道",
+//     value: "sky",
+//   },
+// };
 
 // 封面自动跟随变化
-const themeAutoCoverChange = (val) => {
-  if ($changeThemeColor !== "undefined" && Object.keys(coverTheme.value)?.length) {
-    $changeThemeColor(val ? coverTheme.value : themeTypeName.value, val);
-  }
-};
+// const themeAutoCoverChange = (val) => {
+//   if ($changeThemeColor !== "undefined" && Object.keys(coverTheme.value)?.length) {
+//     $changeThemeColor(val ? coverTheme.value : themeTypeName.value, val);
+//   }
+// };
 
 // 标签页切换
-const settingTabChange = (name) => {
-  const index = Number(name.replace("setTab", ""));
-  const setDom = document.querySelectorAll(".set-type")?.[index - 1];
-  if (!setDom) return false;
-  // 滚动至设置分类
-  setDom.scrollIntoView({ behavior: "smooth" });
-};
+// const settingTabChange = (name) => {
+//   const index = Number(name.replace("setTab", ""));
+//   const setDom = document.querySelectorAll(".set-type")?.[index - 1];
+//   if (!setDom) return false;
+//   // 滚动至设置分类
+//   setDom.scrollIntoView({ behavior: "smooth" });
+// };
 
 // 设置列表滚动
 const allSetScroll = debounce((e) => {
@@ -709,15 +710,15 @@ const closeTaskbarProgress = (val) => {
 };
 
 // 更改下载目录
-const choosePath = async () => {
-  const selectedDir = await electron.ipcRenderer.invoke("selectDir", true);
-  if (selectedDir) downloadPath.value = selectedDir;
-};
+// const choosePath = async () => {
+//   const selectedDir = await electron.ipcRenderer.invoke("selectDir", true);
+//   if (selectedDir) downloadPath.value = selectedDir;
+// };
 
 // 跳转
-const jump = () => {
-  window.open(packageJson.github);
-};
+// const jump = () => {
+//   window.open(packageJson.github);
+// };
 
 // 程序重置
 const resetApp = () => {

@@ -294,7 +294,7 @@ export const createPlayer = async (src, autoPlay = true) => {
         electron.ipcRenderer.send("songStateChange", false);
       }
       // 更改页面标题
-      if (!checkPlatform.electron()) document.title = defaultTitle || "SPlayer";
+      if (!checkPlatform.electron()) document.title = defaultTitle || "Vusic";
     });
     // 结束播放
     player?.on("end", () => {

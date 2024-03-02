@@ -14,8 +14,7 @@ import log from "electron-log";
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 
 // 配置 log
-log.transports.file.resolvePathFn = () =>
-  join(app.getPath("documents"), "/SPlayer/SPlayer-log.txt");
+log.transports.file.resolvePathFn = () => join(app.getPath("documents"), "/Vusic/Vusic-log.txt");
 // 设置日志文件的最大大小为 2 MB
 log.transports.file.maxSize = 2 * 1024 * 1024;
 // 绑定 console 事件
@@ -93,7 +92,7 @@ class MainProcess {
     }
 
     // 注册应用协议
-    app.setAsDefaultProtocolClient("SPlayer");
+    app.setAsDefaultProtocolClient("Vusic");
     // 应用程序准备好之前注册
     protocol.registerSchemesAsPrivileged([
       { scheme: "app", privileges: { secure: true, standard: true } },
@@ -107,7 +106,7 @@ class MainProcess {
   createWindow() {
     // 创建浏览器窗口
     this.mainWindow = new BrowserWindow({
-      title: app.getName() || "SPlayer",
+      title: app.getName() || "Vusic",
       width: this.store.get("windowSize.width") || 1280, // 窗口宽度
       height: this.store.get("windowSize.height") || 740, // 窗口高度
       minHeight: 700, // 最小高度

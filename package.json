@@ -1,12 +1,12 @@
 {
-  "name": "splayer",
+  "name": "vusic",
   "version": "2.0.4",
   "description": "A minimalist music player",
   "main": "./out/main/index.js",
-  "author": "imsyy",
-  "home": "https://imsyy.top",
-  "github": "https://github.com/imsyy/SPlayer",
-  "repository": "github:imsyy/SPlayer",
+  "author": "zeonxr",
+  "home": "https://github.com/zeonxr",
+  "github": "https://github.com/zeonxr",
+  "repository": "github:zeonxr/Vusic",
   "license": "AGPL-3.0",
   "license-file": "LICENSE",
   "engines": {
