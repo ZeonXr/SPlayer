@@ -131,6 +131,7 @@ export default defineConfig(({ mode }) => {
       ],
       // 服务器配置
       server: {
+        host: getEnv("MAIN_VITE_SERVER_HOST"),
         port: getEnv("MAIN_VITE_DEV_PORT"),
         // 代理
         proxy: {
