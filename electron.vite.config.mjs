@@ -140,6 +140,11 @@ export default defineConfig(({ mode }) => {
             changeOrigin: true,
             rewrite: (path) => path.replace(/^\/api/, ""),
           },
+          "/nuxic": {
+            target: `http://127.0.0.1:3000/api/`,
+            changeOrigin: true,
+            rewrite: (path) => path.replace(/^\/nuxic/, ""),
+          },
         },
       },
       // 构建

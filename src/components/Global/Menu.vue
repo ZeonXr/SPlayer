@@ -102,6 +102,20 @@ const menuOptions = computed(() => [
         RouterLink,
         {
           to: {
+            name: "nuxic",
+          },
+        },
+        () => ["Nuxic"],
+      ),
+    key: "nuxic",
+    icon: renderIcon("home"),
+  },
+  {
+    label: () =>
+      h(
+        RouterLink,
+        {
+          to: {
             name: "home",
           },
         },

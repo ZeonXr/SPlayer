@@ -61,19 +61,6 @@
       <Playlist />
     </n-config-provider>
     <Playlist v-else />
-    <!-- 全局水印 -->
-    <!-- <n-watermark
-      :font-size="16"
-      :line-height="16"
-      :width="384"
-      :height="384"
-      :x-offset="12"
-      :y-offset="60"
-      :rotate="-15"
-      content="开发中，敬请期待"
-      cross
-      fullscreen
-    /> -->
   </Provider>
 </template>
 

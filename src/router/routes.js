@@ -1,6 +1,11 @@
 import { checkPlatform } from "@/utils/helper";
 
 const routes = [
+  {
+    path: "/nuxic",
+    name: "nuxic",
+    component: () => import("@/views/Nuxic/index.vue"),
+  },
   // 首页
   {
     path: "/",
