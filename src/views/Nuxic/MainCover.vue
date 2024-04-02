@@ -66,7 +66,11 @@
               <n-text class="add-desc">{{ item.desc }}</n-text>
             </div>
             <!-- 播放按钮 -->
-            <CoverPlayBtn v-if="type !== 'artist'" :id="item.id" :type="type" />
+            <div v-if="type !== 'artist'" class="play-btn">
+              <n-icon size="50">
+                <SvgIcon icon="play-circle" />
+              </n-icon>
+            </div>
             <n-icon v-else class="play-btn">
               <SvgIcon icon="account-music" />
             </n-icon>
@@ -190,8 +194,9 @@ const jumpLink = (data, type) => {
         });
         break;
       case "playlist":
+        console.log("xxx");
         router.push({
-          path: "/playlist",
+          path: "/nuxic-playlist",
           query: {
             id: data?.id,
           },
@@ -207,7 +212,7 @@ const jumpLink = (data, type) => {
         break;
       case "artist":
         router.push({
-          path: "/artist",
+          path: "/nuxic-artist",
           query: {
             id: data?.id,
           },

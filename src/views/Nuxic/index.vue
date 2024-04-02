@@ -9,7 +9,7 @@
       <n-text depth="3">由此开启好心情 ~</n-text>
     </div>
     <div v-for="(item, index) in recommendData" :key="index" class="rec-public">
-      <n-h3 class="title" prefix="bar" @click="item.to ? router.push(item.to) : null">
+      <n-h3 class="title" prefix="bar">
         <n-text class="name">{{ item.name }}</n-text>
         <n-icon v-if="item.to" class="more" depth="3">
           <SvgIcon icon="chevron-right" />
@@ -27,7 +27,6 @@
 
 <script setup>
 import { storeToRefs } from "pinia";
-import { useRouter } from "vue-router";
 import { getGreetings } from "@/utils/timeTools";
 import { siteData, siteSettings } from "@/stores";
 import { isLogin } from "@/utils/auth";
@@ -36,7 +35,6 @@ import MainCover from "./MainCover.vue";
 import { getPlaylist, getArtist } from "./api";
 
 const data = siteData();
-const router = useRouter();
 const settings = siteSettings();
 const { showSider } = storeToRefs(settings);
 
@@ -47,7 +45,8 @@ const recommendData = ref({
     loadingNum: 12,
     columns: showSider.value ? undefined : "2 s:3 m:4 l:5 xl:6",
     data: [],
-    to: "/discover/playlists",
+    type: "playlist",
+    to: "/nuxic-playlist",
   },
 
   artist: {
@@ -56,7 +55,7 @@ const recommendData = ref({
     columns: showSider.value ? "3 s:4 m:5 l:6" : "3 sm:4 m:5 l:6",
     loadingNum: 6,
     data: [],
-    to: "/discover/artists",
+    to: "/nuxic-artist",
   },
 
   // album: {
@@ -98,7 +97,7 @@ const getRecommendData = async () => {
     //   throw new Error("一个或多个请求失败");
     // }
     recommendData.value.playlist.data = await getPlaylist();
-    recommendData.value.artist.data = (await getArtist()).slice(0, 6);
+    recommendData.value.artist.data = (await getArtist()).slice(0, 10);
   } catch (error) {
     $message.error("个性化推荐获取失败");
     console.error("个性化推荐获取失败：", error);

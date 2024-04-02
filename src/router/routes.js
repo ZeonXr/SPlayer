@@ -6,6 +6,16 @@ const routes = [
     name: "nuxic",
     component: () => import("@/views/Nuxic/index.vue"),
   },
+  {
+    path: "/nuxic-playlist",
+    name: "nuxic-playlist",
+    component: () => import("@/views/Nuxic/playlist.vue"),
+  },
+  {
+    path: "/nuxic-artist",
+    name: "nuxic-artist",
+    component: () => import("@/views/Nuxic/artist.vue"),
+  },
   // 首页
   {
     path: "/",

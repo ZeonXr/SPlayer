@@ -4,8 +4,13 @@ const request = axios.create({
   baseURL: "/nuxic",
 });
 
-export const getPlaylist = async () => {
-  const { data: playlist } = await request("/playlist");
+export const getPlaylist = async (id) => {
+  let playlist = [];
+  if (id !== undefined) {
+    playlist[0] = (await request(`/playlist/${id}`)).data;
+  } else {
+    playlist = (await request("/playlist")).data;
+  }
   for (const item of playlist) {
     item.cover = `http://127.0.0.1:3000/api/file/${item.coverId}`;
     item.coverSize = {
@@ -18,9 +23,9 @@ export const getPlaylist = async () => {
     item.creator = "";
     item.createTime = "1656573893700";
     item.userId = "3937312537";
+    item.description = item.desc;
     item.desc = undefined;
   }
-
   return playlist;
 };
 
