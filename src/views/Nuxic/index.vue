@@ -33,6 +33,7 @@ import { isLogin } from "@/utils/auth";
 import MainCover from "./MainCover.vue";
 
 import { getPlaylist, getArtist } from "./api";
+import { onMounted } from "vue";
 
 const data = siteData();
 const settings = siteSettings();
@@ -41,7 +42,7 @@ const { showSider } = storeToRefs(settings);
 // 个性化推荐数据
 const recommendData = ref({
   playlist: {
-    name: isLogin() ? "专属歌单" : "推荐歌单",
+    name: isLogin() ? "推荐歌单" : "推荐歌单",
     loadingNum: 12,
     columns: showSider.value ? undefined : "2 s:3 m:4 l:5 xl:6",
     data: [],
@@ -109,9 +110,21 @@ onBeforeMount(async () => {
   data.setDailySongsData();
   // 个性化推荐
   getRecommendData();
-  console.log("---------------------------------------------");
-  console.log(await getArtist());
-  console.log("---------------------------------------------");
+  // console.log("---------------------------------------------");
+  // console.log(await getArtist());
+  // console.log("---------------------------------------------");
+});
+const f5Callback = (e) => {
+  if (e.key === "F5") {
+    getRecommendData();
+  }
+};
+onMounted(() => {
+  window.addEventListener("keydown", f5Callback);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", f5Callback);
 });
 </script>
 

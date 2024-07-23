@@ -97,6 +97,7 @@ const mainIpcMain = (win) => {
   ipcMain.handle("getDirContents", async (_, selectedDir) => {
     try {
       // 使用 readDirAsync 函数递归地读取文件夹内容
+      console.log(selectedDir);
       const directoryContents = await readDirAsync(selectedDir);
       return directoryContents;
     } catch (err) {

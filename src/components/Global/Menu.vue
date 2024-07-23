@@ -138,25 +138,25 @@ const menuOptions = computed(() => [
     key: "discover",
     icon: renderIcon("discover-fill"),
   },
-  {
-    label: "私人漫游",
-    key: "fm",
-    icon: renderIcon("radio"),
-  },
-  {
-    label: () =>
-      h(
-        RouterLink,
-        {
-          to: {
-            name: "dj-hot",
-          },
-        },
-        () => ["播客电台"],
-      ),
-    key: "dj-hot",
-    icon: renderIcon("record"),
-  },
+  // {
+  //   label: "私人漫游",
+  //   key: "fm",
+  //   icon: renderIcon("radio"),
+  // },
+  // {
+  //   label: () =>
+  //     h(
+  //       RouterLink,
+  //       {
+  //         to: {
+  //           name: "dj-hot",
+  //         },
+  //       },
+  //       () => ["播客电台"],
+  //     ),
+  //   key: "dj-hot",
+  //   icon: renderIcon("record"),
+  // },
   {
     key: "divider-1",
     type: "divider",

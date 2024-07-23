@@ -308,22 +308,44 @@ const getSongData = (songs) => {
   playListData.value = songsDetail;
 };
 
+const getData = (id) => {
+  getPlaylist(id).then((res) => {
+    playListDetail.value = res[0];
+    getSongData(playListDetail.value.songs);
+  });
+};
+
 watch(
   () => router.currentRoute.value,
   async (val) => {
-    playListDetail.value = (await getPlaylist(val.query?.id))[0];
-    getSongData(playListDetail.value.songs);
+    // playListDetail.value = (await getPlaylist(val.query?.id))[0];
+    // getSongData(playListDetail.value.songs);
+    getData(val.query?.id);
   },
 );
 
 onBeforeMount(async () => {
-  playListDetail.value = (await getPlaylist(playlistId.value))[0];
-  getSongData(playListDetail.value.songs);
+  // playListDetail.value = (await getPlaylist(playlistId.value))[0];
+  // getSongData(playListDetail.value.songs);
+  getData(playlistId.value);
 });
 
 onBeforeUnmount(() => {
   loadingMsg.value?.destroy();
   loadingMsg.value = null;
+});
+
+const f5Callback = (e) => {
+  if (e.key === "F5") {
+    getData(playlistId.value);
+  }
+};
+onMounted(() => {
+  window.addEventListener("keydown", f5Callback);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", f5Callback);
 });
 </script>
 

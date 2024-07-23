@@ -56,8 +56,8 @@ import {
   getTopArtists,
   getNewAlbum,
 } from "@/api/recommend";
-import { allMv } from "@/api/video";
-import { getDjRecommend } from "@/api/dj";
+// import { allMv } from "@/api/video";
+// import { getDjRecommend } from "@/api/dj";
 import { siteData, siteSettings } from "@/stores";
 import { getCacheData } from "@/utils/helper";
 import { isLogin } from "@/utils/auth";
@@ -103,7 +103,7 @@ const likeSongsCoverData = computed(() => {
 // 个性化推荐数据
 const recommendData = ref({
   playlist: {
-    name: isLogin() ? "专属歌单" : "推荐歌单",
+    name: isLogin() ? "推荐歌单" : "推荐歌单",
     loadingNum: 12,
     columns: showSider.value ? undefined : "2 s:3 m:4 l:5 xl:6",
     data: [],
@@ -124,20 +124,20 @@ const recommendData = ref({
     data: [],
     to: "/discover/artists",
   },
-  mv: {
-    name: "推荐 MV",
-    type: "mv",
-    columns: "2 s:2 m:3 l:4 xl:5",
-    loadingNum: 12,
-    data: [],
-  },
-  dj: {
-    name: "推荐播客",
-    type: "dj",
-    loadingNum: 6,
-    data: [],
-    to: "/dj-hot",
-  },
+  // mv: {
+  //   name: "推荐 MV",
+  //   type: "mv",
+  //   columns: "2 s:2 m:3 l:4 xl:5",
+  //   loadingNum: 12,
+  //   data: [],
+  // },
+  // dj: {
+  //   name: "推荐播客",
+  //   type: "dj",
+  //   loadingNum: 6,
+  //   data: [],
+  //   to: "/dj-hot",
+  // },
   album: {
     name: "新碟上架",
     type: "album",
@@ -148,9 +148,58 @@ const recommendData = ref({
 });
 
 // 获取个性化推荐数据
+// const getRecommendData = async () => {
+//   try {
+//     const [playlistRes, radarRes, artistRes, mvRes, djRes, albumRes] = await Promise.allSettled([
+//       // 歌单
+//       isLogin()
+//         ? getCacheData("recPl-P", 5, getDailyRec, "resource")
+//         : getCacheData("recPl", 5, getPersonalized),
+//       // 雷达歌单
+//       getCacheData("recRadar", 30, getRadarPlaylist),
+//       // 歌手
+//       getCacheData("recAr", 5, getTopArtists),
+//       // MV
+//       getCacheData("recMv", 5, allMv),
+//       // 电台
+//       getCacheData("recDj", 5, getDjRecommend),
+//       // 专辑
+//       getCacheData("recAl", 5, getNewAlbum),
+//     ]);
+//     // 检查请求状态
+//     playlistRes.status === "fulfilled" &&
+//       (recommendData.value.playlist.data = formatData(
+//         isLogin()
+//           ? playlistRes.value.recommend.filter((playlist) => {
+//               return !playlist.name.includes("私人雷达");
+//             })
+//           : playlistRes.value.result,
+//       ));
+//     radarRes.status === "fulfilled" &&
+//       (recommendData.value.radar.data = formatData(radarRes.value));
+//     artistRes.status === "fulfilled" &&
+//       (recommendData.value.artist.data = formatData(artistRes.value.artists, "artist"));
+//     mvRes.status === "fulfilled" &&
+//       (recommendData.value.mv.data = formatData(mvRes.value.data, "mv"));
+//     djRes.status === "fulfilled" &&
+//       (recommendData.value.dj.data = formatData(djRes.value.djRadios, "dj"));
+//     albumRes.status === "fulfilled" &&
+//       (recommendData.value.album.data = formatData(albumRes.value.albums, "album"));
+//     // 检查是否有任何请求失败
+//     const anyRejected = [playlistRes, radarRes, artistRes, mvRes, albumRes].some(
+//       (res) => res.status === "rejected",
+//     );
+//     if (anyRejected) {
+//       throw new Error("一个或多个请求失败");
+//     }
+//   } catch (error) {
+//     $message.error("个性化推荐获取失败");
+//     console.error("个性化推荐获取失败：", error);
+//   }
+// };
 const getRecommendData = async () => {
   try {
-    const [playlistRes, radarRes, artistRes, mvRes, djRes, albumRes] = await Promise.allSettled([
+    const [playlistRes, radarRes, artistRes, albumRes] = await Promise.allSettled([
       // 歌单
       isLogin()
         ? getCacheData("recPl-P", 5, getDailyRec, "resource")
@@ -159,10 +208,6 @@ const getRecommendData = async () => {
       getCacheData("recRadar", 30, getRadarPlaylist),
       // 歌手
       getCacheData("recAr", 5, getTopArtists),
-      // MV
-      getCacheData("recMv", 5, allMv),
-      // 电台
-      getCacheData("recDj", 5, getDjRecommend),
       // 专辑
       getCacheData("recAl", 5, getNewAlbum),
     ]);
@@ -179,14 +224,10 @@ const getRecommendData = async () => {
       (recommendData.value.radar.data = formatData(radarRes.value));
     artistRes.status === "fulfilled" &&
       (recommendData.value.artist.data = formatData(artistRes.value.artists, "artist"));
-    mvRes.status === "fulfilled" &&
-      (recommendData.value.mv.data = formatData(mvRes.value.data, "mv"));
-    djRes.status === "fulfilled" &&
-      (recommendData.value.dj.data = formatData(djRes.value.djRadios, "dj"));
     albumRes.status === "fulfilled" &&
       (recommendData.value.album.data = formatData(albumRes.value.albums, "album"));
     // 检查是否有任何请求失败
-    const anyRejected = [playlistRes, radarRes, artistRes, mvRes, albumRes].some(
+    const anyRejected = [playlistRes, radarRes, artistRes, albumRes].some(
       (res) => res.status === "rejected",
     );
     if (anyRejected) {

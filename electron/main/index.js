@@ -9,7 +9,7 @@ import createGlobalShortcut from "@main/utils/createGlobalShortcut";
 import mainIpcMain from "@main/mainIpcMain";
 import Store from "electron-store";
 import log from "electron-log";
-
+app.commandLine.appendSwitch("disable-features", "WidgetLayering");
 // 屏蔽报错
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
 

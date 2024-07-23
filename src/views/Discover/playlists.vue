@@ -123,7 +123,12 @@ const router = useRouter();
 // 路由数据
 const pageNumber = ref(Number(router.currentRoute.value.query?.page) || 1);
 const catName = ref(router.currentRoute.value.query?.cat || "全部歌单");
-const hqPlOpen = ref(router.currentRoute.value.query?.hq === "true" ?? false);
+// const hqPlOpen = ref(router.currentRoute.value.query?.hq === "true" ?? false);
+const hqPlOpen = ref(
+  router.currentRoute.value.query?.hq === undefined
+    ? true
+    : router.currentRoute.value.query?.hq === "true",
+);
 
 // 歌单数据
 const catChangeShow = ref(false);
@@ -217,7 +222,8 @@ watch(
       // 更改参数
       pageNumber.value = Number(val.query?.page) || 1;
       catName.value = val.query?.cat || "全部歌单";
-      hqPlOpen.value = val.query?.hq === "true" ?? false;
+      // hqPlOpen.value = val.query?.hq === "true" ?? false;
+      hqPlOpen.value = val.query?.hq === undefined ? true : val.query?.hq === "true";
       // 调用接口
       getDscPlaylistData(
         catName.value,

@@ -11,6 +11,7 @@ import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
 import Components from "unplugin-vue-components/vite";
 import viteCompression from "vite-plugin-compression";
+import VueDevTools from "vite-plugin-vue-devtools";
 
 export default defineConfig(({ mode }) => {
   // 读取环境变量
@@ -57,6 +58,7 @@ export default defineConfig(({ mode }) => {
       },
       plugins: [
         vue(),
+        VueDevTools(),
         AutoImport({
           imports: [
             "vue",
